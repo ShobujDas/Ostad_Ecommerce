@@ -16,8 +16,9 @@ const DataSchema = mongoose.Schema({
 
 
 
-const BrandModel = mongoose.models('brands',DataSchema);
+const BrandModel = mongoose.model('brands',DataSchema);
 module.exports = BrandModel;
+
 
 
 

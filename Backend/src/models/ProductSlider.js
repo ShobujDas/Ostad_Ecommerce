@@ -26,7 +26,7 @@ const DataSchema = mongoose.Schema({
 
 
 
-const ProductSliderModel = mongoose.models('productSliders',DataSchema);
+const ProductSliderModel = mongoose.model('productSliders',DataSchema);
 module.exports = ProductSliderModel;
 
 

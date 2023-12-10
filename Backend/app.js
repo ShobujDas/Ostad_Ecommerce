@@ -1,20 +1,28 @@
-const express = require('express');
-const router = require('./src/routes/api');
+const express = require("express");
+const router = require("./src/routes/api");
 const app = new express();
-const bodyParser = require('body-parser');
+const bodyParser = require("body-parser");
 
 //Security Middleware LIb Import
-const rateLimit = require('express-rate-limit');
-const helmet = require('helmet');
-const mongoSanitize = require('express-mongo-sanitize');
-const xss = require('xss-clean');
-const hpp = require('hpp');
-const cors = require('cors');
-
-
+const rateLimit = require("express-rate-limit");
+const helmet = require("helmet");
+const mongoSanitize = require("express-mongo-sanitize");
+const xss = require("xss-clean");
+const hpp = require("hpp");
+const cors = require("cors");
 
 //Database Lib Import
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
+
+
+  let URL =
+    "mongodb+srv://<username>:<password>@cluster0.xhwd4ge.mongodb.net/ecom4?retryWrites=true&w=majority";
+    let option={user:'shobujd6',pass:"shobujd6",autoIndex:true};
+    mongoose.connect(URL,option).then((res)=>{
+        console.log("Database Connected")
+    }).catch((err)=>{
+        console.log(err)
+    })
 
 //Security Middleware Implement
 app.use(cors());
@@ -23,47 +31,22 @@ app.use(mongoSanitize());
 app.use(xss());
 app.use(hpp());
 
-
-app.use(express.json({limit:'50mb'}));
-app.use(express.urlencoded({limit:'50mb'}));
-
+app.use(express.json({ limit: "50mb" }));
+app.use(express.urlencoded({ limit: "50mb" }));
 
 //Body Parser Implement
 app.use(bodyParser.json());
 
 //Request Rate Limit
-const limiter = rateLimit({windowMs:15*60*1000,max:3000});
-app.use(limiter)
-
-
-//BD Connection
-
-
-
-
-
+const limiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 3000 });
+app.use(limiter);
 
 //Routing Implement
-app.use('/api/v1', router);
+app.use("/api/v1", router);
 
 //undedined Route Implement
-app.use('*',(req,res)=>{
-   res.status(404).json({status:"fail",data:"Not Found"})
-})
+app.use("*", (req, res) => {
+  res.status(404).json({ status: "fail", data: "Not Found" });
+});
 
 module.exports = app;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

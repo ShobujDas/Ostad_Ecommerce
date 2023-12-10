@@ -16,8 +16,8 @@ const DataSchema = mongoose.Schema({
 
 
 
-const CategoryModel = mongoose.models('categories',DataSchema);
-module.exports = BrandModel;
+const CategoryModel = mongoose.model('categories',DataSchema);
+module.exports = CategoryModel;
 
 
 

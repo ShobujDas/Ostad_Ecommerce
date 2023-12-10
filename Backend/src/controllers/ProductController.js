@@ -1,44 +1,36 @@
+const { ProductByRemark, ProductByCategory, ProductByBrand, ProductByCategoryLimited10, ProductByKewWord } = require("../services/ProductService")
+
 exports.SliderList =async (req,res)=>{
 
-   return res.status(200).json({
-      success:true,
-      message:'Slider List'
-   })
+   let result = await ProductBySilder(req);
+   return res.status(200).json(result)
 }
 
 
 exports.ListByCategroy =async (req,res)=>{
-
-   return res.status(200).json({
-      success:true,
-      message:'ListByCategroy List'
-   })
+   let result = await ProductByCategory(req);
+   return res.status(200).json(result)
 }
 
 exports.ListBySmilier =async (req,res)=>{
 
-   return res.status(200).json({
-      success:true,
-      message:'ListBySmilier List'
-   })
+   let result = await ProductByCategoryLimited10(req);
+   return res.status(200).json(result)
 }
 
 
 exports.ListByBrand =async (req,res)=>{
 
-   return res.status(200).json({
-      success:true,
-      message:'ListByCategroy List'
-   })
+ 
+   let result = await ProductByBrand(req);
+   return res.status(200).json(result)
 }
 
 
 exports.ListByKeyWord =async (req,res)=>{
-
-   return res.status(200).json({
-      success:true,
-      message:'ListByKeyWord List'
-   })
+   
+   let result = await ProductByKewWord(req);
+   return res.status(200).json(result)
 }
 
 
@@ -62,10 +54,8 @@ exports.ProductDetails =async (req,res)=>{
 
 exports.ListByRemark =async (req,res)=>{
 
-   return res.status(200).json({
-      success:true,
-      message:'ListByRemark '
-   })
+   let result = await ProductByRemark(req);
+   return res.status(200).json(result)
 }
 
 

@@ -10,13 +10,6 @@ const AuthVerification = require('../middlewares/AuthVerification');
 
 
 
-
-
-
-
-
-
-
 const router = express.Router();
 
 
@@ -24,15 +17,17 @@ const router = express.Router();
 router.get('/BrandList',BrandController.BrandList);
 router.get('/CategoryList',CategoryController.CategoryList);
 
+
+
 //Product
 router.get('/SliderList',ProductController.SliderList);
-router.get('/ListByCategroy',ProductController.ListByCategroy);
-router.get('/ListBySmilier',ProductController.ListBySmilier);
-router.get('/ListByBrand',ProductController.ListByBrand);
-router.get('/ListByKeyWord',ProductController.ListByKeyWord);
+router.get('/ListByCategroy/:categoryID',ProductController.ListByCategroy);
+router.get('/ListBySmilier/:categoryID',ProductController.ListBySmilier);
+router.get('/ListByBrand/:brandID',ProductController.ListByBrand);
+router.get('/ListByKeyWord/:keyword',ProductController.ListByKeyWord);
 router.get('/ListReview',ProductController.ListReview);
 router.get('/ProductDetails',ProductController.ProductDetails);
-router.get('/ListByRemark',ProductController.ListByRemark);
+router.get('/ListByRemark/:remark',ProductController.ListByRemark);
 router.get('/WishList',ProductController.WishList);
 router.get('/CreateWistList',ProductController.CreateWistList);
 router.get('/RemoveWistList',ProductController.RemoveWistList);
@@ -42,13 +37,13 @@ router.get('/RemoveCartList',ProductController.RemoveCartList);
 
 
 //User
-router.get('/UserLogin',UserController.UserLogin);
-router.get('/VerifyLogin',UserController.VerifyLogin);
+router.get('/UserLogin/:email',UserController.UserLogin);
+router.get('/VerifyLogin/:email/:otp',UserController.VerifyLogin);
 router.get('/UserLogout',UserController.UserLogout);
 
 
 //Profile
-router.get('/CreateProfile',AuthVerification,ProfileController.CreateProfile);
+router.post('/CreateProfile',AuthVerification,ProfileController.CreateProfile);
 router.get('/ReadProfile',AuthVerification,ProfileController.ReadProfile);
 router.get('/UpdateProfile',AuthVerification,ProfileController.UpdateProfile);
 
